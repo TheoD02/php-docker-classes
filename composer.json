@@ -1,4 +1,6 @@
 {
+    "name": "theod02/docker-classes-generator",
+    "description": "Project for generate Docker classes for Castor",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
