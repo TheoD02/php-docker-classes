@@ -82,7 +82,7 @@ class DockerVolume
 
 
 	/**
-	 * Remove all unused local volumes
+	 * Remove unused local volumes
 	 *
 	 * @param ?bool $all Remove all unused volumes, not just anonymous ones
 	 * @param ?array $filter Provide filter values (e.g. "label=<label>")

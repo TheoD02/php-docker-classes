@@ -35,7 +35,7 @@ class DockerSystem
 	 * Get real time events from the server
 	 *
 	 * @param ?array $filter Filter output based on conditions provided
-	 * @param ?string $format Format the output using the given Go template
+	 * @param ?string $format Format output using a custom template:
 	 * @param ?string $since Show all events created since timestamp
 	 * @param ?string $until Stream events until this timestamp
 	 */
@@ -84,7 +84,7 @@ class DockerSystem
 	 * @param ?bool $all Remove all unused images not just dangling ones
 	 * @param ?array $filter Provide filter values (e.g. "label=<key>=<value>")
 	 * @param ?bool $force Do not prompt for confirmation
-	 * @param ?bool $volumes Prune volumes
+	 * @param ?bool $volumes Prune anonymous volumes
 	 */
 	public function prune(
 		?bool $all = null,

@@ -9,6 +9,7 @@ class Docker
 	 * Create and run a new container from an image
 	 *
 	 * @param ?array $addHost Add a custom host-to-IP mapping
+	 * @param ?array $annotation Add an annotation to the container
 	 * @param ?array $attach Attach to STDIN, STDOUT or STDERR
 	 * @param ?array $blkioWeightDevice Block IO weight (relative device
 	 * @param ?array $capAdd Add Linux capabilities
@@ -104,6 +105,7 @@ class Docker
 	 */
 	public function run(
 		?array $addHost = null,
+		?array $annotation = null,
 		?array $attach = null,
 		?array $blkioWeightDevice = null,
 		?array $capAdd = null,
@@ -201,6 +203,9 @@ class Docker
 		$cmd = $this->cmd . ' run';
 		if ($addHost !== null) {
 		    $cmd .= ' --add-host=' . implode(',', $addHost);
+		}
+		if ($annotation !== null) {
+		    $cmd .= ' --annotation=' . implode(',', $annotation);
 		}
 		if ($attach !== null) {
 		    $cmd .= ' --attach=' . implode(',', $attach);
@@ -972,7 +977,7 @@ class Docker
 
 
 	/**
-	 * Docker Buildx (Docker Inc., 0.11.2+azure-3)
+	 * Docker Buildx (Docker Inc., v0.11.2)
 	 *
 	 * @param ?string $builder Override the configured builder instance
 	 */
@@ -985,7 +990,7 @@ class Docker
 
 
 	/**
-	 * Docker Compose (Docker Inc., 2.21.0-1)
+	 * Docker Compose (Docker Inc., v2.21.0)
 	 *
 	 * @param ?string $ansi Control when to print ANSI control
 	 * @param ?bool $compatibility Run compose in backward compatibility mode
@@ -1207,6 +1212,7 @@ class Docker
 	 * Create a new container
 	 *
 	 * @param ?array $addHost Add a custom host-to-IP mapping
+	 * @param ?array $annotation Add an annotation to the container
 	 * @param ?array $attach Attach to STDIN, STDOUT or STDERR
 	 * @param ?array $blkioWeightDevice Block IO weight (relative device
 	 * @param ?array $capAdd Add Linux capabilities
@@ -1299,6 +1305,7 @@ class Docker
 	 */
 	public function create(
 		?array $addHost = null,
+		?array $annotation = null,
 		?array $attach = null,
 		?array $blkioWeightDevice = null,
 		?array $capAdd = null,
@@ -1393,6 +1400,9 @@ class Docker
 		$cmd = $this->cmd . ' create';
 		if ($addHost !== null) {
 		    $cmd .= ' --add-host=' . implode(',', $addHost);
+		}
+		if ($annotation !== null) {
+		    $cmd .= ' --annotation=' . implode(',', $annotation);
 		}
 		if ($attach !== null) {
 		    $cmd .= ' --attach=' . implode(',', $attach);
@@ -1679,7 +1689,7 @@ class Docker
 	 * Get real time events from the server
 	 *
 	 * @param ?array $filter Filter output based on conditions provided
-	 * @param ?string $format Format the output using the given Go template
+	 * @param ?string $format Format output using a custom template:
 	 * @param ?string $since Show all events created since timestamp
 	 * @param ?string $until Stream events until this timestamp
 	 */

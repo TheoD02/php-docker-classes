@@ -94,6 +94,7 @@ class DockerContainer
 	 * Create a new container
 	 *
 	 * @param ?array $addHost Add a custom host-to-IP mapping
+	 * @param ?array $annotation Add an annotation to the container
 	 * @param ?array $attach Attach to STDIN, STDOUT or STDERR
 	 * @param ?array $blkioWeightDevice Block IO weight (relative device
 	 * @param ?array $capAdd Add Linux capabilities
@@ -186,6 +187,7 @@ class DockerContainer
 	 */
 	public function create(
 		?array $addHost = null,
+		?array $annotation = null,
 		?array $attach = null,
 		?array $blkioWeightDevice = null,
 		?array $capAdd = null,
@@ -280,6 +282,9 @@ class DockerContainer
 		$cmd = $this->cmd . ' create';
 		if ($addHost !== null) {
 		    $cmd .= ' --add-host=' . implode(',', $addHost);
+		}
+		if ($annotation !== null) {
+		    $cmd .= ' --annotation=' . implode(',', $annotation);
 		}
 		if ($attach !== null) {
 		    $cmd .= ' --attach=' . implode(',', $attach);
@@ -861,6 +866,7 @@ class DockerContainer
 	 * Create and run a new container from an image
 	 *
 	 * @param ?array $addHost Add a custom host-to-IP mapping
+	 * @param ?array $annotation Add an annotation to the container
 	 * @param ?array $attach Attach to STDIN, STDOUT or STDERR
 	 * @param ?array $blkioWeightDevice Block IO weight (relative device
 	 * @param ?array $capAdd Add Linux capabilities
@@ -956,6 +962,7 @@ class DockerContainer
 	 */
 	public function run(
 		?array $addHost = null,
+		?array $annotation = null,
 		?array $attach = null,
 		?array $blkioWeightDevice = null,
 		?array $capAdd = null,
@@ -1053,6 +1060,9 @@ class DockerContainer
 		$cmd = $this->cmd . ' run';
 		if ($addHost !== null) {
 		    $cmd .= ' --add-host=' . implode(',', $addHost);
+		}
+		if ($annotation !== null) {
+		    $cmd .= ' --annotation=' . implode(',', $annotation);
 		}
 		if ($attach !== null) {
 		    $cmd .= ' --attach=' . implode(',', $attach);
